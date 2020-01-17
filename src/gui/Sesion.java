@@ -5,6 +5,8 @@
  */
 package gui;
 
+import bussines.Persona;
+
 /**
  *
  * @author bsav157
@@ -14,8 +16,11 @@ public class Sesion extends javax.swing.JFrame {
     /**
      * Creates new form Sesion
      */
-    public Sesion() {
+    Persona persona;
+    
+    public Sesion(Persona p) {
         initComponents();
+        this.persona = p;
     }
 
     /**
@@ -42,12 +47,32 @@ public class Sesion extends javax.swing.JFrame {
         label1.setText("BIENVENIDO");
 
         btnRetirar.setText("Retirar");
+        btnRetirar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRetirarActionPerformed(evt);
+            }
+        });
 
         btnDepositar.setText("Depositar");
+        btnDepositar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDepositarActionPerformed(evt);
+            }
+        });
 
         btnConsultar.setText("Consultar");
+        btnConsultar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnConsultarActionPerformed(evt);
+            }
+        });
 
         btnCerrar.setText("Cerrar Sesión");
+        btnCerrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCerrarActionPerformed(evt);
+            }
+        });
 
         jLabel1.setText("¿Que operación deseas realizar?");
 
@@ -107,6 +132,31 @@ public class Sesion extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCerrarActionPerformed
+        this.setVisible(false);
+        Main main = new Main();
+        main.setVisible(true);
+    }//GEN-LAST:event_btnCerrarActionPerformed
+
+    private void btnRetirarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRetirarActionPerformed
+        Retiro retiro = new Retiro(persona);
+        this.setVisible(false);
+        retiro.setVisible(true);
+        
+    }//GEN-LAST:event_btnRetirarActionPerformed
+
+    private void btnDepositarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDepositarActionPerformed
+        Deposito deposito = new Deposito(persona);
+        this.setVisible(false);
+        deposito.setVisible(true);
+    }//GEN-LAST:event_btnDepositarActionPerformed
+
+    private void btnConsultarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsultarActionPerformed
+        Consulta consulta = new Consulta(persona);
+        this.setVisible(false);
+        consulta.setVisible(true);
+    }//GEN-LAST:event_btnConsultarActionPerformed
 
     /**
      * @param args the command line arguments

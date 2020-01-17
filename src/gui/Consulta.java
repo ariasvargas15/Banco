@@ -5,6 +5,8 @@
  */
 package gui;
 
+import bussines.Persona;
+
 /**
  *
  * @author bsav157
@@ -14,8 +16,10 @@ public class Consulta extends javax.swing.JFrame {
     /**
      * Creates new form Consulta
      */
-    public Consulta() {
+    Persona persona;
+    public Consulta(Persona p) {
         initComponents();
+        this.persona = p;
     }
 
     /**

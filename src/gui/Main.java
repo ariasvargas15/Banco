@@ -6,6 +6,7 @@
 package gui;
 
 import bussines.Negocio;
+import bussines.Persona;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -106,14 +107,14 @@ public class Main extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addComponent(label2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
                 .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                    .addComponent(fieldCedula, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(fieldPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(label4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(btnInicicar)
                 .addGap(23, 23, 23))
         );
@@ -147,13 +148,15 @@ public class Main extends javax.swing.JFrame {
     }//GEN-LAST:event_fieldPasswordActionPerformed
 
     private void btnInicicarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInicicarActionPerformed
-        String cedula = fieldCedula.getText();
-        char[] pass = fieldPassword.getPassword();
+        
         try {
-            if(negocio.validarSesion(cedula, pass)){
+            String cedula = fieldCedula.getText();
+            char[] pass = fieldPassword.getPassword();
+            Persona persona = negocio.validarSesion(cedula, pass);
+            if(persona!=null){
                 System.out.println("paso");
                 this.setVisible(false);
-                Sesion sesion = new Sesion();
+                Sesion sesion = new Sesion(persona);
                 sesion.setVisible(true);
             }
         } catch (Exception ex) {
